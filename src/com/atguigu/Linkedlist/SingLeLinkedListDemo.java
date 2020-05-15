@@ -1,6 +1,7 @@
 package com.atguigu.Linkedlist;
 
 import java.sql.ParameterMetaData;
+import java.util.Stack;
 
 public class SingLeLinkedListDemo {
     public static void main(String[] args) {
@@ -27,24 +28,31 @@ public class SingLeLinkedListDemo {
         singleLinkedList.list();
 
         //测试修改节点
-        HerNode newherNode = new HerNode(2,"小卢","玉麒麟");
-        singleLinkedList.update(newherNode);
-
-        System.out.println("修改后");
+//        HerNode newherNode = new HerNode(2,"小卢","玉麒麟");
+//        singleLinkedList.update(newherNode);
+//
+     System.out.println("修改后");
         //显示
-        singleLinkedList.list();
-        //删除一个节点
-
-        singleLinkedList.del(1);
-        System.out.println("删除后!!");
-        singleLinkedList.del(4);
-        singleLinkedList.list();
-        //测试单链表有效节点个数
-        System.out.println("有效节点个数" + getLiength(singleLinkedList.getHead()));
+//        singleLinkedList.list();
+//        //删除一个节点
+//
+//        singleLinkedList.del(1);
+//        System.out.println("删除后!!");
+//        singleLinkedList.del(4);
+//        singleLinkedList.list();
+//        //测试单链表有效节点个数
+//        System.out.println("有效节点个数" + getLiength(singleLinkedList.getHead()));
 
         //测试一下 倒数第K个节点
-        HerNode res = findLastIndexNode(singleLinkedList.getHead(),0);
+       /* HerNode res = findLastIndexNode(singleLinkedList.getHead(),0);
         System.out.println("倒数第一个" + res);
+*/
+//        reversetList(singleLinkedList.getHead());
+//        singleLinkedList.list();
+
+        //逆序打印
+        reverserPrint(singleLinkedList.getHead());
+       // singleLinkedList.list();
     }
 
     //获取单链表节点个数 如果带头节点 不统计头节点
@@ -80,6 +88,27 @@ public class SingLeLinkedListDemo {
             reverseHead.next = cur;
             cur = next; //让cr后移动
         }
+        head.next = reverseHead.next;
+    }
+
+    //使用方式二栈 这个数据结构进行逆序
+    public static void reverserPrint(HerNode head){
+        if (head.next == null){ //空链表
+            return; //不能打印
+        }
+        //先创建一个栈 将各个节点压入栈
+        Stack<HerNode> stack = new Stack<>();
+        HerNode cur = head.next;
+        //将链表所有节点压入栈
+        while (cur != null){
+            stack.push(cur);
+            cur = cur.next; //后移 这样就可以压入下一个节点
+        }
+        //遍历将 栈的节点打印 出找
+        while (stack.size() > 0){
+            System.out.println(stack.pop()); //逆序 先进后出
+        }
+
     }
 
     //倒数个k节点
@@ -248,7 +277,7 @@ class  SingleLinkedList {
             temp.next = temp.next.next;
         } else {
             //说明没有找到
-            System.out.printf("要删除的节点%d 不村子啊", no);
+            System.out.printf("要删除的节点%d 不存在啊", no);
         }
     }
 }

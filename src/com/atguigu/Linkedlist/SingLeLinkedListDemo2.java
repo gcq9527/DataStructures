@@ -72,6 +72,7 @@ public class SingLeLinkedListDemo2 {
         return temp;
     }
 
+
 }
 class SingleLinkedList1{
     private HerNode1 head1 = new HerNode1(0,"","");
