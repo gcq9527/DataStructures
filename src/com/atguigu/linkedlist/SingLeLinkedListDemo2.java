@@ -1,4 +1,4 @@
-package com.atguigu.Linkedlist;
+package com.atguigu.linkedlist;
 
 public class SingLeLinkedListDemo2 {
     public static void main(String[] args) {
@@ -50,10 +50,10 @@ public class SingLeLinkedListDemo2 {
     }
 
     //倒数第K个节点
-    //1.编写一个方 接收head节点 同时接收一个index
+    //1.编写一个方法 接收head节点 同时接收一个index(倒数的节点)
     //2.index表示倒数第index个节点
     //3.先把链表从头到尾遍历 得到链表总长度
-    //4.得到size后 我们从链表的第一个开始遍历 size-index个 就可以得到
+    //4.得到size后 我们从链表的第一个开始遍历 size-index 个 就可以得到
     //5.如果得到了则返回该节点 否则 返回null
     public static HerNode1 findLastIndexNode(HerNode1 head1, int index){
         if (head1 == null){ //链表下一个节点为空 说明没有值

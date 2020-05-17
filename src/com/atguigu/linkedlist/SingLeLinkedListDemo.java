@@ -1,6 +1,5 @@
-package com.atguigu.Linkedlist;
+package com.atguigu.linkedlist;
 
-import java.sql.ParameterMetaData;
 import java.util.Stack;
 
 public class SingLeLinkedListDemo {

@@ -1,4 +1,4 @@
-package com.atguigu.Linkedlist;
+package com.atguigu.linkedlist;
 
 /**
  * Created by GuoChengQian on 2020/5/15 10:29

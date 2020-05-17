@@ -1,7 +1,6 @@
-package com.atguigu.LinkedList2;
+package com.atguigu.linkedList2;
 
 
-import java.awt.print.Pageable;
 import java.util.Stack;
 
 /**

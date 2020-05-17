@@ -1,6 +1,4 @@
-package com.atguigu.Linkedlist;
-
-import java.sql.SQLOutput;
+package com.atguigu.linkedlist;
 
 /**
  * Created by GuoChengQian on 2020/5/15 15:34
@@ -18,6 +16,7 @@ public class Josefu {
 class CircleSingLeLinkedList{
     //创建一个first节点 当前没有编号
     private Boy first = new Boy(-1);
+
     //添加小孩节点 构建成一个环形链表
     public void addBoy(int nums){
         if (nums < 1){
@@ -36,7 +35,7 @@ class CircleSingLeLinkedList{
                 curBoy = first;//让curboy指向第一个小孩子
             }else{
                 curBoy.setNext(boy);//临时变量的next等于新的boy
-                boy.setNext(first);//新的boy设置他的next等于头节点
+                boy.setNext(first);//新的boy设置他的next等于头节点 从而形成一个环形链表
                 curBoy = boy;//boy的值给临时变量curBoy
             }
         }
@@ -54,6 +53,7 @@ class CircleSingLeLinkedList{
         while(true){
             System.out.printf("小孩的编号 %d \n",curBoy.getNo());
             //环形链表的next等于 头节点 说明已经到头了
+            // 因为在插入的时候 first是头节点 插入后都会指向头节点
             if (curBoy.getNext() == first){//说明链表遍历完毕
                 break;
             }
@@ -77,22 +77,22 @@ class CircleSingLeLinkedList{
         }
         //创建一个辅助变量
         Boy helper = first;
-        //需求创建一个辅助指针(变量)helper 指向环形链表最后节点
+        //1.需求创建一个辅助指针(变量)helper 指向环形链表最后节点 此处通过whil循环实现
         while (true) {
             if (helper.getNext() == first) { //说明helper指向最后小孩的节点
                 break;
             }
             helper = helper.getNext();
         }
-        //小孩报数钱前 让first和helper移动k-1次
+        //小孩报数前 让first和helper移动k-1次
         for (int j = 0; j < startNo - 1; j++) {
             first = first.getNext();
-            helper = helper.getNext();
+            helper = helper.getNext(); //环形链表 指向first
         }
         //当小孩报数的时候 让first和helper指针同时移动m-1次 然后出圈
         //这里是一个循环操作，知道圈中有这么一个节点
-        while(true){
-            if (helper == first){//说明圈中只有一节点 一个人
+        while (true) {
+            if (helper == first) {//说明圈中只有一节点 一个人
                 break;
             }
             //让first和helper指针同时移动conutNum-1
@@ -103,10 +103,12 @@ class CircleSingLeLinkedList{
             //这时first指向的节点 就是要出圈的小孩节点
             System.out.printf("小孩%d出圈\n", first.getNo());
             //将first指向的小孩的节点出圈
+            //让first往前移动 指向他的前一个
+            // 然后设置helper的next为first 构成环形 之前的节点就会被垃圾回收机制给回收
             first = first.getNext();
-           helper.setNext(first);
+            helper.setNext(first);
         }
-        System.out.printf("最后留在圈中额小孩编号%d \n",helper.getNo());
+        System.out.printf("最后留在圈中额小孩编号%d \n", helper.getNo());
     }
 
 }
