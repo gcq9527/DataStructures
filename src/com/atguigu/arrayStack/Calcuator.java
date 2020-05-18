@@ -1,12 +1,14 @@
 package com.atguigu.arrayStack;
 
+import javafx.util.BuilderFactory;
+
 /**
  * Created by GuoChengQian on 2020/5/17 11:52
  */
 public class Calcuator {
     public static void main(String[] args) {
         //根据老师思路，完成表达式的运算
-        String expression = "3+2*6-2";//13
+        String expression = "30+2*6-2";//13
         //创建两个栈,数栈 符号栈
         ArrayStack2 numStack = new ArrayStack2(10);
         ArrayStack2 operStack = new ArrayStack2(10);
@@ -17,8 +19,9 @@ public class Calcuator {
         int oper = 0; //字符
         int res = 0; //返回结果
         char ch = ' ';//将每次扫描得到的存到ch
+        String keepNum = "";//用于拼接
 //        使用while循环扫描expression
-        while(true){
+        while(true){https://wenku.baidu.com/view/299ea02e2bf90242a8956bec0975f46527d3a7c5.html
             //依次得到expression通过截取 然后转换成字符
             ch = expression.substring(index,index+1).charAt(0);
             //判断ch是什么 做相应的处理
@@ -41,23 +44,43 @@ public class Calcuator {
                         operStack.push(ch);
                     }
                 }else{
-                    //如果为空直接入栈
+                    //如果为空直接入字符栈
                     operStack.push(ch);//1+3
                 }
             }else{
                 //如果是数字 直接入数栈
-                numStack.push(ch-48);
+         /*       System.out.println(ch + "---" );
+                System.out.println(ch-48);*/
+                 //ASCII码 1为48 减48拿到数字
+                //1.在处理多位数时，不能发现是一个数就立即入栈 因为他可能是多位数
+                //2.在处理数，需要向expression的表达式的index后 再看一位 如果是数就进行扫描 如果是符号就入栈
+                //3.因从我们需要定义一个变量字符串变量，用于拼接
+                //处理多位数
+                keepNum += ch;
+                //如果ch已经是expression的最后一位 就直接入栈
+                if (index == expression.length() -1){
+                    numStack.push(Integer.parseInt(keepNum));
+                }else{
+                    //往后面看下 下一位字符是不是数字 如果是数字 就继续扫描 如果是运算符 则入栈
+                    //往后看以为 不是index++
+                    if (operStack.isOper(expression.substring(index+1,index+2).charAt(0))){
+                        //后一位是运算符,则入栈
+                        numStack.push(Integer.parseInt(keepNum));
+                        //重要！！！ keepNum
+                        keepNum = "";
+                    }
+                }
             }
             //让index + 1 并判断是否扫描到expression最后
-            index++;
-            if (index >= expression.length()){
+            index++;//接着拆分字符串
+            if (index >= expression.length()){//大于字符串的长度就结束
                 break;
             }
         }
-
         //当扫描完毕
         while(true){
-            //如果符号栈为空 则计算到最后的结果 数栈中只有一个[数字]结果
+            //如果符号栈为空 不用计算
+            // 否则计算到最后的结果 数栈中只有一个[数字]结果
             if (operStack.isEmpty()){
                 break;
             }
