@@ -23,8 +23,7 @@ public class PolandNotation {
         System.out.println("后缀表达式:"+strings1);//[1, 2, 3, +, 4, *, +, 5, -]
 
         System.out.println("后缀表达式计算的结果视" + calculate(strings1));
-        /*
-        String suffixExpression = "30 4 + 5 * 6 -";
+/*        String suffixExpression = "30 4 + 5 * 6 -";
         //思路
         //1.先将 表达式存放到 =>放到ArrayList中
         //2.将ArrayList 传递一个方法 遍历ArrayList 配合栈 完成计算
@@ -32,9 +31,8 @@ public class PolandNotation {
         System.out.println("renList=" + list);
 
         int res = calculate(list);
-        System.out.println("计算的结果是=" + res);
+        System.out.println("计算的结果是=" + res);*/
 
-         */
     }
 
     //3.将得到的中缀表达式对应的list  => 后缀表达式对应的list
@@ -58,7 +56,7 @@ public class PolandNotation {
                 while(!s1.peek().equals("(")){
                     s2.add(s1.pop());//把s1的内容弹出 放到s2中 直到遇到了左括号
                 }
-                s1.pop();//将( 弹出s1栈 消除小括号
+                s1.pop();//将( 弹出s1栈 消除括号
             }else{
                 //当item的优先级小于s1栈顶运算符 将s1栈顶的运算符弹出并压入到s2中，再次转到(4.1)与s1中新的栈顶运算符相比较；
                 while(s1.size() != 0 && Operation.getValue(s1.peek()) >= Operation.getValue(item)){
@@ -85,12 +83,12 @@ public class PolandNotation {
         char c;//每遍历一个字符就放到c
         do {
             //通过charAt截取字符
-            //如果c是一个非数字 需要加入到ls中 Ascll编码表中 小于48 大于57 就不是数字
+            //如果c是一个操作字符 就需要加入到ls中 Ascll编码表中 小于48 大于57 就不是数字
             if ((c = s.charAt(i)) < 48 || (c = s.charAt(i)) > 57) {
                 ls.add("" + c);
                 i++;//往后移动
             } else {
-                //如果是一个数 需要考虑多位数
+                //如果是一个数 需要考虑多位数比如 30 不单单是个位数
                 str = "";
                 //编码表 大于48 小于57就是数字
                 while (i < s.length() && (c = s.charAt(i)) >= 48 && (c = s.charAt(i)) <= 57) {
@@ -104,7 +102,7 @@ public class PolandNotation {
     }
 
 
-
+    //将字符串存入到list中
     private static List<String> getListString(String suffixExpression) {
         String[] split = suffixExpression.split(" ");
         List<String> list = new ArrayList<String>();

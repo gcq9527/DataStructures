@@ -8,7 +8,7 @@ import javafx.util.BuilderFactory;
 public class Calcuator {
     public static void main(String[] args) {
         //根据老师思路，完成表达式的运算
-        String expression = "30+2*6-2";//13
+        String expression = "3+2*6-2";//13
         //创建两个栈,数栈 符号栈
         ArrayStack2 numStack = new ArrayStack2(10);
         ArrayStack2 operStack = new ArrayStack2(10);
@@ -21,7 +21,7 @@ public class Calcuator {
         char ch = ' ';//将每次扫描得到的存到ch
         String keepNum = "";//用于拼接
 //        使用while循环扫描expression
-        while(true){https://wenku.baidu.com/view/299ea02e2bf90242a8956bec0975f46527d3a7c5.html
+        while(true){
             //依次得到expression通过截取 然后转换成字符
             ch = expression.substring(index,index+1).charAt(0);
             //判断ch是什么 做相应的处理
@@ -56,7 +56,7 @@ public class Calcuator {
                 //2.在处理数，需要向expression的表达式的index后 再看一位 如果是数就进行扫描 如果是符号就入栈
                 //3.因从我们需要定义一个变量字符串变量，用于拼接
                 //处理多位数
-                keepNum += ch;
+                keepNum += ch; //临时存放值
                 //如果ch已经是expression的最后一位 就直接入栈
                 if (index == expression.length() -1){
                     numStack.push(Integer.parseInt(keepNum));
