@@ -19,7 +19,7 @@ public class Queue8 {
 
     //特别注意，check是每一次递归时，进入到check中都有  for (int i=0; i<max; i++) 因此会有回溯
     public void check(int n){
-        if(n==max){//n = 8 其实8个皇后就依然放好
+        if(n==max){//n = 8 其实8个皇后就打印
             print();
             return;
         }
@@ -45,7 +45,7 @@ public class Queue8 {
         judge++;
        for (int i=0; i<n; i++){
            //Math.abs绝对值
-           //1.array[i] == array[n] 表示判断 第n个黄后 是否和前面n-1皇后在同一列
+           //1.array[i] == array[n] 表示判断 第n个皇后 是否和前面n-1皇后在同一列
            //2.Math.abs(n-i) = Math.abs(array[n] - array[i]) 表示判断第n个皇后是否和第i皇后是否在同一斜线
            //n = 1 放置第2列 n = 1 array[1] = 1
            //Math.abs(1-0) == 1 Math.abs(array[n] - array[i]) = Math.abs(1-0) =1
