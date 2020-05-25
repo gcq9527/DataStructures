@@ -6,27 +6,28 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 /**
+ * 冒泡排序
  * Created by GuoChengQian on 2020/5/20 13:06
  */
 public class BubbleSort {
     public static void main(String[] args) {
-//        int[] arr = {3,9,-1,10,-2};
+        int[] arr = {3,9,-1,10,-2};
 //        int[] arr = {1,2,3,4,5,6};
 
         /**
          * 测试
          * 8万个数排序大约需要11秒时间
          */
-        int[] arr = new int[80000];
+     /*   int[] arr = new int[80000];
         for (int i = 0; i<80000; i++){
             arr[i] =(int)(Math.random()*80000);
-        }
+        }*/
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String format = dateFormat.format(date);
         System.out.println("开始时间=" +format );
 
-        BubbleSort(arr);
+        BubbleSort3(arr);
 
         Date date1 = new Date();
         String format1 = dateFormat.format(date1);
@@ -108,6 +109,20 @@ public class BubbleSort {
 /*          System.out.println("第"+(j+1)+"次排序");
           System.out.println(Arrays.toString(arr));*/
       }
+    }
+
+    public static void BubbleSort3(int[] arr){
+      for (int i=0; i<arr.length-1;i++){
+          int temp = 0;
+          for (int j = 0; j<arr.length-1-i; j++){
+              if (arr[j] > arr[j+1]){
+                  temp = arr[j];
+                  arr[j] = arr[j+1];
+                  arr[j+1] = temp;
+              }
+          }
+      }
+        System.out.println("冒泡排序后="+Arrays.toString(arr) );
     }
 
 

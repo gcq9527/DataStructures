@@ -45,9 +45,8 @@ public class SelectSort {
          * 算法 先简单 =>做复杂 就是可以把一个复杂的算法 拆分成简单的问题，=>逐步解决
          */
         for (int i = 0; i < arr.length - 1; i++) {
-            int min = arr[i];//最小数
+            int min = arr[i];//定义一个最小数
             int minIndex = i;//最小数的索引
-            //第一轮
             //为什么要从0+1开始 因为假定第一位是最小的数
             for (int j = i + 1; j < arr.length; j++) {
                 if (min > arr[j]) {//说明我们假定最小的值 并不是最小
