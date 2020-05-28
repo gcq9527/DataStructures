@@ -1,6 +1,8 @@
 package com.atguigu.search;
 
 /**
+ * 线性查找
+ * 直接通过循环查找你匹配到就返回结果
  * Created by GuoChengQian on 2020/5/25 13:21
  */
 public class SeqSearch {
