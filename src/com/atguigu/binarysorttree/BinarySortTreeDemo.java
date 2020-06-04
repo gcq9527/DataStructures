@@ -18,7 +18,15 @@ public class BinarySortTreeDemo {
         binarySortTree.infixOrder();
 
 
+        binarySortTree.delNode(2);
+        binarySortTree.delNode(5);
+        binarySortTree.delNode(9);
+        binarySortTree.delNode(12);
         binarySortTree.delNode(7);
+        binarySortTree.delNode(3);
+
+        binarySortTree.delNode(10);
+        binarySortTree.delNode(1);
         System.out.println("删除结点后 中序遍历二叉排序树");
         binarySortTree.infixOrder();
     }
@@ -92,20 +100,28 @@ class BinarySortTree{
                 targetNode.value = minVal;
             } else {//删除只有一棵子树的节点
                 //如果要删除的结点有左子结点
-                if (targetNode.left != null ) {
-                    //如果targetNode是parent的左子结点
-                    if (parent.left.value == value){
-                        parent.left = targetNode.left;
-                    } else { //targetNode 是parent的右子结点
-                        parent.right = targetNode.left;
-                    }
+                    if (parent != null) {
+                        if (targetNode.left != null ) {
+                            //如果targetNode是parent的左子结点
+                            if (parent.left.value == value) {
+                                parent.left = targetNode.left;
+                            } else { //targetNode 是parent的右子结点
+                                parent.right = targetNode.left;
+                            }
+                    } else {
+                          root = targetNode.left;
+                        }
                 } else { //如果要删除的结点有右子结点
                     //如果targetNode 是parent的右子结点
-                    if (parent.left.value == value) {
-                        parent.left = targetNode.right;
-                    } else {//如果targetNode是 parent的右子结点
-                        parent.right = targetNode.right;
-                    }
+                        if (parent != null ) {
+                            if (parent.left.value == value) {
+                                parent.left = targetNode.right;
+                            } else {//如果targetNode是 parent的右子结点
+                                parent.right = targetNode.right;
+                            }
+                        } else {
+                            root = targetNode.right;
+                        }
                 }
             }
 
